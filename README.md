@@ -1,0 +1,4 @@
+AtomicCheckers
+==============
+
+Checkers. Java Game
