@@ -16,21 +16,23 @@ public class Tablero {
     private String color1;
     private String color2;
     private JFrame ventana;
+    private Ficha[][] fichas;
 
     public Tablero(int cols, int rows) {
         this.columnas = cols;
         this.lineas = rows;
-        this.color1 = "/atomic/images/cuadro_blanco.png";
-        this.color2 = "/atomic/images/cuadro_cafe.png";
+        this.color1 = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/cuadro_blanco.png";
+        this.color2 = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/cuadro_cafe.png";
     }
     
     
 
     public void init() {
+        System.out.println("Inicializando tablero...");
         // Crear ventana principal
         ventana = new JFrame();
-        ventana.setSize(600, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(520, 520);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("Atomic Checkers");
         
@@ -38,21 +40,39 @@ public class Tablero {
         panel.setLayout(new GridLayout(this.lineas, this.columnas));
         
         String temp;
+        Color color;
         for (int i = 0; i < lineas; i++) {
+            // Alternar colores del fondo del cuadro
             if (i % 2 == 0) {
                 temp = this.color1;
             } else {
                 temp = this.color2;
             }
             for (int j = 0; j < columnas; j++) {
-                CuadroTablero ficha_panel = new CuadroTablero(temp);
 //              usar para fondo http://jc-mouse.blogspot.mx/2009/12/jframe-con-imagen-de-fondo-en-netbeans.html
+                // Alternar colores del fondo del cuadro
                 if (temp.equals(this.color1)) {
                     temp = this.color2;
+                    color = Color.ORANGE;
                 } else {
                     temp = this.color1;
+                    color = Color.WHITE;
                 }
-                panel.add(ficha_panel);
+                
+                // Decidir si va una ficha en el cuadro o no
+                CuadroTablero cuadroTablero = new CuadroTablero(color);
+                if ( (i == 0 || i == 2) && (j%2) == 0 ) {
+                    cuadroTablero.agregarFicha(Ficha.FICHA_A);
+                } else if ( i== 1  && (j%2) != 0 ) {
+                    cuadroTablero.agregarFicha(Ficha.FICHA_A);
+                } else if ( (i == 5 || i == 7) && (j%2) == 0 ) {
+                    cuadroTablero.agregarFicha(Ficha.FICHA_B);
+                } else if ( i== 6  && (j%2) != 0 ) {
+                    cuadroTablero.agregarFicha(Ficha.FICHA_B);
+                }
+                
+                // Agregar el cuadro al panel del container
+                panel.add(cuadroTablero);
             }
         }
         ventana.setVisible(true);
