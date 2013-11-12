@@ -16,13 +16,14 @@ public class Tablero {
     private String color1;
     private String color2;
     private JFrame ventana;
+    private JPanel tablero;
     private Ficha[][] fichas;
 
     public Tablero(int cols, int rows) {
         this.columnas = cols;
         this.lineas = rows;
-        this.color1 = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/cuadro_blanco.png";
-        this.color2 = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/cuadro_cafe.png";
+        this.color1 = "atomic/images/cuadro_blanco.png";
+        this.color2 = "atomic/images/cuadro_cafe.png";
     }
     
     
@@ -36,7 +37,8 @@ public class Tablero {
         ventana.setResizable(false);
         ventana.setTitle("Atomic Checkers");
         
-        Container panel = ventana.getContentPane();
+        //Container panel = ventana.getContentPane();
+        JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(this.lineas, this.columnas));
         
         String temp;
@@ -53,10 +55,11 @@ public class Tablero {
                 // Alternar colores del fondo del cuadro
                 if (temp.equals(this.color1)) {
                     temp = this.color2;
-                    color = Color.ORANGE;
+                    //color = new Color(158, 118, 6); // Color café
+                    color = Color.ORANGE; // Color café
                 } else {
                     temp = this.color1;
-                    color = Color.WHITE;
+                    color = new Color(242, 242, 242); // Color blanco
                 }
                 
                 // Decidir si va una ficha en el cuadro o no
@@ -75,7 +78,7 @@ public class Tablero {
                 panel.add(cuadroTablero);
             }
         }
-        ventana.setVisible(true);
+        this.tablero = panel;
     }
     
 //    Métodos de instancia
@@ -114,5 +117,13 @@ public class Tablero {
 
     public void setColor2(String color2) {
         this.color2 = color2;
+    }
+
+    public JPanel getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(JPanel tablero) {
+        this.tablero = tablero;
     }
 }

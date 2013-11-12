@@ -23,31 +23,38 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="375" max="-2" attributes="0"/>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="287" max="32767" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="282" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="332" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/atomic/images/TituloAyuda.png"/>
+        </Property>
+      </Properties>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -60,26 +67,15 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Monospaced" size="18" style="0"/>
+              <Font name="Monospaced" size="14" style="0"/>
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Juego elaborado por  Atomic Industries:&#xa;&#xa;- Fernando G&#xf3;mez Herrera&#xa;- Luis Eduardo Ballinas Aguilar&#xa;- Francisco Manuel Barros Vargas&#xa;- Gabriel Olvera Ramos&#xa;&#xa;Durante la materia de Programaci&#xf3;n Orientada a Objetos para poner en pr&#xe1;ctica los conocimientos adquiridos."/>
+            <Property name="text" type="java.lang.String" value="Atomic Checkers, est&#xe1; inspirado en el clasico juego de &quot;damas inglesas&quot;.&#xa;&#xa;# Intrucciones&#xa;&#xa;El objetivo del juego es dejar sin fichas al oponente moviendo las fichas en diagonal y de un movimiento por turno, las fichas siempre se mueven hacia adelante y no pueden retroceder.&#xa;El juego empieza con el jugador que tenga el color de fichas m&#xe1;s claro comunmente son blancas.&#xa;Cuando una ficha llega al extremo contrario se convierte en &quot;Dama&quot; o &quot;Reina&quot;.&#xa;La Dama tiene diferentes caracteristicas, se mueve de igual forma (en diagonal), pero puede retroceder y no tiene limite en cuanto a movimientos en diagonal.&#xa;Las fichas de igual forma comen en diagonal, para esto tiene que haber una ficha enfrente de otra y un espacio vacio atr&#xe1;s de la ficha que se va a comer, al comer la ficha (la que comi&#xf3;) queda en ese espacio, de no haber un espacio vacio no se puede comer la ficha, ES OBLIGATORIO COMER LA FICHA.&#xa;Si un jugador no puede mover la ficha &#xa;&#xa;"/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
-            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[20, 20, 20, 20]"/>
-            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CR&#xc9;DITOS"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

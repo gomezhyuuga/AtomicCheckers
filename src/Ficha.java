@@ -1,18 +1,9 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import javax.swing.GroupLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.TransferHandler;
 
 /*
  * Fichas.
@@ -23,8 +14,8 @@ import javax.swing.TransferHandler;
 public class Ficha extends JPanel {
 
     private Color colorFicha;
-    public final static String FICHA_A = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/fichas_A.png";
-    public final static String FICHA_B = "/Users/gomezhyuuga/Projects/java/Atomic Checkers/src/atomic/images/fichas_B.png";
+    public final static String FICHA_A = "src/atomic/images/fichas_A.png";
+    public final static String FICHA_B = "src/atomic/images/fichas_B.png";
 
     public Ficha(String imagenFicha) {
         super();

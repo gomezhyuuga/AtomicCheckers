@@ -1,19 +1,20 @@
+
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
 /**
  *
- * @author gomezhyuuga
+ * @author Lu15V
  */
-public class Creditos extends javax.swing.JFrame {
+public class Ayuda extends javax.swing.JFrame {
 
     /**
-     * Creates new form Creditos
+     * Creates new form Ayuda
      */
-    public Creditos() {
+    public Ayuda() {
         initComponents();
     }
 
@@ -26,46 +27,44 @@ public class Creditos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atomic/images/TituloAyuda.png"))); // NOI18N
+
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Juego elaborado por  Atomic Industries:\n\n- Fernando Gómez Herrera\n- Luis Eduardo Ballinas Aguilar\n- Francisco Manuel Barros Vargas\n- Gabriel Olvera Ramos\n\nDurante la materia de Programación Orientada a Objetos para poner en práctica los conocimientos adquiridos.");
+        jTextArea1.setText("Atomic Checkers, está inspirado en el clasico juego de \"damas inglesas\".\n\n# Intrucciones\n\nEl objetivo del juego es dejar sin fichas al oponente moviendo las fichas en diagonal y de un movimiento por turno, las fichas siempre se mueven hacia adelante y no pueden retroceder.\nEl juego empieza con el jugador que tenga el color de fichas más claro comunmente son blancas.\nCuando una ficha llega al extremo contrario se convierte en \"Dama\" o \"Reina\".\nLa Dama tiene diferentes caracteristicas, se mueve de igual forma (en diagonal), pero puede retroceder y no tiene limite en cuanto a movimientos en diagonal.\nLas fichas de igual forma comen en diagonal, para esto tiene que haber una ficha enfrente de otra y un espacio vacio atrás de la ficha que se va a comer, al comer la ficha (la que comió) queda en ese espacio, de no haber un espacio vacio no se puede comer la ficha, ES OBLIGATORIO COMER LA FICHA.\nSi un jugador no puede mover la ficha \n\n");
         jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setMargin(new java.awt.Insets(20, 20, 20, 20));
         jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("CRÉDITOS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(159, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(276, 276, 276)
-                .addComponent(jLabel1)
-                .addContainerGap(287, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
 
         pack();
@@ -88,24 +87,23 @@ public class Creditos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ayuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ayuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ayuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ayuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Creditos().setVisible(true);
+                new Ayuda().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -38,6 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         menuItem_salir = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuItem_acercaDe = new javax.swing.JMenuItem();
         menuItem_creditos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -54,17 +55,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(play_btn);
-        play_btn.setBounds(240, 250, 160, 50);
+        play_btn.setBounds(230, 260, 180, 50);
 
-        help_btn.setText("¿Como jugar?");
+        help_btn.setText("Salir");
+        help_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                help_btnActionPerformed(evt);
+            }
+        });
         getContentPane().add(help_btn);
-        help_btn.setBounds(270, 310, 110, 40);
+        help_btn.setBounds(260, 330, 130, 40);
+
+        txtJugador1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtJugador1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtJugador1);
-        txtJugador1.setBounds(160, 410, 200, 28);
+        txtJugador1.setBounds(220, 400, 200, 22);
 
         jLabel1.setText("Jugador 1:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(90, 416, 70, 20);
+        jLabel1.setBounds(140, 400, 70, 20);
 
         txtJugador2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,11 +84,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtJugador2);
-        txtJugador2.setBounds(160, 450, 200, 28);
+        txtJugador2.setBounds(220, 440, 200, 22);
 
         jLabel2.setText("Jugador 2:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 450, 70, 30);
+        jLabel2.setBounds(140, 440, 70, 30);
 
         main_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atomic/images/main_bg.png"))); // NOI18N
         getContentPane().add(main_bg);
@@ -106,6 +118,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Ayuda");
 
+        jMenuItem1.setText("¿Como jugar?");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         menuItem_acercaDe.setText("Acerca de Atomic Checkers");
         menuItem_acercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +153,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void play_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_btnActionPerformed
         String[] args = {};
-        AtomicCheckers.main(args);
+        VentanaJuego juego = new VentanaJuego();
+        juego.setJugador1(txtJugador1.getText());
+        juego.setJugador2(txtJugador2.getText());
+        juego.setVisible(true);
     }//GEN-LAST:event_play_btnActionPerformed
 
     private void menuItem_creditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_creditosActionPerformed
@@ -150,12 +173,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItem_salirActionPerformed
 
     private void menuItem_acercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_acercaDeActionPerformed
-        
+        AcercaDe acerca = new AcercaDe();
+        acerca.setVisible(true);
     }//GEN-LAST:event_menuItem_acercaDeActionPerformed
 
     private void txtJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJugador2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtJugador2ActionPerformed
+
+    private void help_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help_btnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_help_btnActionPerformed
+
+    private void txtJugador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJugador1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJugador1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+             Ayuda ayuda = new Ayuda();
+             ayuda.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +237,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel main_bg;
     private javax.swing.JMenuItem menuItem_acercaDe;
