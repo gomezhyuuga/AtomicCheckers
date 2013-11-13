@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author gomezhyuuga
+ * @author (Luis Ballinas, Gabriel Ramos Olvera, Fernando Gomez, Francisco Barros) 
+ * @version (9/13/2013)
  */
 public class Creditos extends javax.swing.JFrame {
 

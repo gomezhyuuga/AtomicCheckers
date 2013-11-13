@@ -1,22 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author gomezhyuuga
+ * @author (Luis Ballinas, Gabriel Ramos Olvera, Fernando Gomez, Francisco Barros) 
+ * @version (9/13/2013)
  */
 import javax.swing.*;
 import java.awt.*;
 
 public class CuadroTablero extends JPanel {
-    private String ruta_img_fondo;
+    private Color colorFondo;
 
     public CuadroTablero(Color color) {
         super();
-        this.ruta_img_fondo = ruta_img_fondo;
-        
+        this.colorFondo = color;
         setBackground(color);
         setOpaque(true);
         setLayout(new BorderLayout(0, 0));

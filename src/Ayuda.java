@@ -1,13 +1,6 @@
-
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Lu15V
+ * @author (Luis Ballinas, Gabriel Ramos Olvera, Fernando Gomez, Francisco Barros) 
+ * @version (9/13/2013)
  */
 public class Ayuda extends javax.swing.JFrame {
 
