@@ -113,6 +113,12 @@ public abstract class CuadroTablero extends JPanel {
                         comio = true;
                     }
                     if (comio) {
+                        // Si comió hacia la derecha entonces:
+                        // posAntesX < p.x < posicion.x
+                        // SI comió hacia la derecha entonces:
+                        // posicion.x < p.x < posAntesX
+                        // Posición de la ficha que se comió:
+                        // (posicion.x + posAntesX)/2
                         System.out.println("COMIÓ");
                         int posElimX = (posicion.getX() + posAntesX) / 2;
                         int posElimY = (posicion.getY() + posAntesY) / 2;
@@ -130,12 +136,7 @@ public abstract class CuadroTablero extends JPanel {
                         c.repaint();
                         c.setFicha(null);
                     }
-                    // Si comió hacia la derecha entonces:
-                    // posAntesX < p.x < posicion.x
-                    // SI comió hacia la derecha entonces:
-                    // posicion.x < p.x < posAntesX
-                    // Posición de la ficha que se comió:
-                    // (posicion.x + posAntesX)/2
+
                 }
 
                 // Ya tiró, establecer como tirando false
