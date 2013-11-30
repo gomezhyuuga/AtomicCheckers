@@ -108,7 +108,7 @@ public class Ficha extends JLabel {
                     int x2 = x + incrementoX2;
                     int y2 = y + incrementoY;
                     // Validación para bordes
-                    if (x2 >= 1 && x2 <= 8) {
+                    if (x2 >= 1 && x2 <= 8 && y2 >= 1 && y2 <= 8) {
                         // Puede comer hacia la izquierda
                         if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
                             // Puede comer
