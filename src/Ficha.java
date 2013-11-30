@@ -16,6 +16,7 @@ public class Ficha extends JLabel {
 
     private ImageIcon fondoFicha;
     private Posicion posicion;
+    private ArrayList<Posicion> movsAComer;
     CuadroTablero cuadro;
     protected ArrayList<Posicion> posiblesMovs;
     public final static String FICHA_A = "src/atomic/images/fichas_A.png";
@@ -55,6 +56,7 @@ public class Ficha extends JLabel {
     }
 
     void determinarPosiblesMovimientos() {
+
         // Posibles movimientos por defecto (aún sin validar si hay fichas en las posiciones posibles
         // a mover ni si puede comer o no)
         ArrayList<Posicion> posiblesMovs = new ArrayList<Posicion>();
@@ -84,7 +86,7 @@ public class Ficha extends JLabel {
         ArrayList<Posicion> movsAEliminar = new ArrayList<Posicion>();
 
         // Determinar si hay ficha dentro de los posibles movimientos
-        ArrayList<Posicion> movsAComer = new ArrayList<Posicion>();
+        movsAComer = new ArrayList<Posicion>();
         for (Posicion p : posiblesMovs) {
             int x = p.getX();
             int y = p.getY();
@@ -138,6 +140,14 @@ public class Ficha extends JLabel {
             posiblesMovs.remove(p);
         }
 
+        if (this instanceof FichaA && this.posicion.getY() == 1) {
+            // ya llegó hasta abajo, se convierte en reina
+            posiblesMovs.clear();
+        } else if (this instanceof FichaB && this.posicion.getY() == 8) {
+            // ya llegó hasta arriba, se convierte en reina
+            posiblesMovs.clear();
+        }
+
         // Resaltar cuadros a los que puede mover
         if (posiblesMovs.size() > 0) {
             System.out.println("POSIBLES MOVS:");
@@ -158,6 +168,14 @@ public class Ficha extends JLabel {
 
     public void setCuadro(CuadroTablero cuadro) {
         this.cuadro = cuadro;
+    }
+
+    public ArrayList<Posicion> getMovsAComer() {
+        return movsAComer;
+    }
+
+    public void setMovsAComer(ArrayList<Posicion> movsAComer) {
+        this.movsAComer = movsAComer;
     }
 
 }

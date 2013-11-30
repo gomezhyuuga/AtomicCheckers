@@ -89,6 +89,9 @@ public abstract class CuadroTablero extends JPanel {
             if (movValido) {
                 System.out.println("# MOVIMIENTO VÁLIDO. Tiraste en:");
                 System.out.println(posicion);
+                // pos antes
+                int posAntesX = Tablero.fichaAMover.getPosicion().getX();
+                int posAntesY = Tablero.fichaAMover.getPosicion().getY();
                 // Tirar: mover ficha al nuevo cuadro y remover la antigua
                 Tablero.fichaAMover.getCuadro().removeAll();
                 Tablero.fichaAMover.getCuadro().revalidate();
@@ -98,7 +101,43 @@ public abstract class CuadroTablero extends JPanel {
                 setFicha(Tablero.fichaAMover);
                 Tablero.fichaAMover.setCuadro(this);
                 Tablero.fichaAMover.setPosicion(posicion);
-                
+
+                // Determinar si comió una ficha
+                ArrayList<Posicion> movsAComer = Tablero.fichaAMover.getMovsAComer();
+                for (Posicion p : movsAComer) {
+                    boolean comio = false;
+                    if (posAntesX <= p.getX() && p.getX() <= posicion.getX()) {
+                        comio = true;
+                    }
+                    if (posicion.getX() <= p.getX() && p.getX() <= posAntesX) {
+                        comio = true;
+                    }
+                    if (comio) {
+                        System.out.println("COMIÓ");
+                        int posElimX = (posicion.getX() + posAntesX) / 2;
+                        int posElimY = (posicion.getY() + posAntesY) / 2;
+                        System.out.println("posElimX: " + posElimX);
+                        System.out.println("posElimY: " + posElimY);
+                        CuadroTablero c = Tablero.cuadros[posElimX - 1][posElimY - 1];
+                        // Disminuir número de fichas del jugador
+                        if (c.getFicha() instanceof FichaB) {
+                            tablero.getVentanaJuego().disminuirFichasJ1();
+                        } else {
+                            tablero.getVentanaJuego().disminuirFichasJ2();
+                        }
+                        c.removeAll();
+                        c.revalidate();
+                        c.repaint();
+                        c.setFicha(null);
+                    }
+                    // Si comió hacia la derecha entonces:
+                    // posAntesX < p.x < posicion.x
+                    // SI comió hacia la derecha entonces:
+                    // posicion.x < p.x < posAntesX
+                    // Posición de la ficha que se comió:
+                    // (posicion.x + posAntesX)/2
+                }
+
                 // Ya tiró, establecer como tirando false
                 Tablero.tirando = false;
                 // Restablecer cuadros (quitar color verde)

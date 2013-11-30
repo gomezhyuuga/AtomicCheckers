@@ -11,10 +11,13 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     private String jugador1;
     private String jugador2;
+    private int fichasJ1 = 12;
+    private int fichasJ2 = 12;
 
     /**
      * Creates new form Interface
      */
+    
     public VentanaJuego() {
         initComponents();
         // Crear tablero
@@ -23,7 +26,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         tablero.init();
         panelTablero.add(tablero.getTablero());
     }
-    
+
     public void cambiarLblTurno(String turno) {
         this.lblTurno.setText(turno);
     }
@@ -43,6 +46,10 @@ public class VentanaJuego extends javax.swing.JFrame {
         lblJugador2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblTurno = new javax.swing.JLabel();
+        lblFichasJ1T = new javax.swing.JLabel();
+        lblFichasJ2T = new javax.swing.JLabel();
+        lblFichasJ1 = new javax.swing.JLabel();
+        lblFichasJ2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -65,6 +72,16 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         lblTurno.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         lblTurno.setText("TURNO DE JUGADOR 1");
+
+        lblFichasJ1T.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblFichasJ1T.setText("Fichas J1:");
+
+        lblFichasJ2T.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblFichasJ2T.setText("Fichas J2:");
+
+        lblFichasJ1.setText("12");
+
+        lblFichasJ2.setText("12");
 
         jMenu1.setText("Juego");
 
@@ -113,8 +130,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(lblTurno))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
@@ -123,24 +143,41 @@ public class VentanaJuego extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(lblTurno)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                        .addComponent(lblFichasJ2T)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFichasJ2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFichasJ1T)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFichasJ1)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTurno)
-                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTurno)
+                    .addComponent(lblFichasJ1T)
+                    .addComponent(lblFichasJ1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFichasJ2T)
+                            .addComponent(lblFichasJ2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
@@ -223,9 +260,23 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel lblFichasJ1;
+    private javax.swing.JLabel lblFichasJ1T;
+    private javax.swing.JLabel lblFichasJ2;
+    private javax.swing.JLabel lblFichasJ2T;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblTurno;
     private javax.swing.JPanel panelTablero;
     // End of variables declaration//GEN-END:variables
+
+    void disminuirFichasJ1() {
+        this.fichasJ1 -= 1;
+        this.lblFichasJ1.setText("" + this.fichasJ1);
+    }
+    
+    void disminuirFichasJ2() {
+        this.fichasJ2 -= 1;
+        this.lblFichasJ2.setText("" + this.fichasJ2);
+    }
 }
