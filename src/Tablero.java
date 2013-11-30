@@ -11,13 +11,16 @@ import java.awt.*;
 public class Tablero {
 
     //Datos 
+    public static boolean tirando;
+    public static boolean turnoJugador1;
     private int columnas;
     private int lineas;
     private String color1;
     private String color2;
     private JFrame ventana;
     private JPanel tablero;
-    private CuadroTablero[][] cuadros;
+    public static CuadroTablero[][] cuadros;
+    public static Ficha fichaAMover;
 
     public Tablero(int cols, int rows) {
         this.columnas = cols;
@@ -25,6 +28,8 @@ public class Tablero {
         this.color1 = "atomic/images/cuadro_blanco.png";
         this.color2 = "atomic/images/cuadro_cafe.png";
         cuadros = new CuadroTablero[rows][cols];
+        Tablero.tirando = false;
+        Tablero.turnoJugador1 = true;
     }
 
     public void init() {
@@ -35,11 +40,11 @@ public class Tablero {
         ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("Atomic Checkers");
-        
+
         //Container panel = ventana.getContentPane();
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(this.lineas, this.columnas));
-        
+
         String temp;
         Color color;
         for (int i = 0; i < lineas; i++) {
@@ -50,44 +55,46 @@ public class Tablero {
                 temp = this.color2;
             }
             for (int j = 0; j < columnas; j++) {
-//              usar para fondo http://jc-mouse.blogspot.mx/2009/12/jframe-con-imagen-de-fondo-en-netbeans.html
+                Posicion posicion = new Posicion(j + 1, lineas - i);
+                CuadroTablero cuadroTablero;
                 // Alternar colores del fondo del cuadro
                 if (temp.equals(this.color1)) {
                     temp = this.color2;
                     //color = new Color(158, 118, 6); // Color café
                     color = Color.ORANGE; // Color café
+                    cuadroTablero = new CuadroTableroB(posicion);
                 } else {
                     temp = this.color1;
                     color = new Color(242, 242, 242); // Color blanco
+                    cuadroTablero = new CuadroTableroA(posicion);
                 }
-                
+
                 // Decidir si va una ficha en el cuadro o no
-                Posicion posicion = new Posicion(j + 1, lineas - i);
-                CuadroTablero cuadroTablero = new CuadroTablero(color, posicion);
-                if ( (i == 0 || i == 2) && (j%2) != 0 ) {
+                if ((i == 0 || i == 2) && (j % 2) != 0) {
                     cuadroTablero.agregarFicha(new FichaA(posicion));
-                } else if ( i== 1  && (j%2) == 0 ) {
+                } else if (i == 1 && (j % 2) == 0) {
                     cuadroTablero.agregarFicha(new FichaA(posicion));
-                } else if ( (i == 5 || i == 7) && (j%2) == 0 ) {
+                } else if ((i == 5 || i == 7) && (j % 2) == 0) {
                     cuadroTablero.agregarFicha(new FichaB(posicion));
-                } else if ( i== 6  && (j%2) != 0 ) {
+                } else if (i == 6 && (j % 2) != 0) {
                     cuadroTablero.agregarFicha(new FichaB(posicion));
                 }
                 // Agregar el cuadro al panel del container
-                this.cuadros[i][j] = cuadroTablero;
+                this.cuadros[posicion.getX() - 1][posicion.getY() - 1] = cuadroTablero;
+                cuadroTablero.setTablero(this);
                 panel.add(cuadroTablero);
             }
         }
         this.tablero = panel;
-        
+
         // Imprimir el tablero en la consola
-        for (int i = 0; i < this.lineas; i++) {
-            for (int j = 0; j < this.columnas; j++) {
-                CuadroTablero cuadro = cuadros[i][j];
-                System.out.print(cuadro);
-            }
-            System.out.println("");
-        }
+//        for (int i = 0; i < this.lineas; i++) {
+//            for (int j = 0; j < this.columnas; j++) {
+//                CuadroTablero cuadro = cuadros[i][j];
+//                System.out.print(cuadro);
+//            }
+//            System.out.println("");
+//        }
     }
 
     public CuadroTablero[][] getCuadros() {
@@ -97,10 +104,18 @@ public class Tablero {
     public void setCuadros(CuadroTablero[][] cuadros) {
         this.cuadros = cuadros;
     }
-    
+
 //    Métodos de instancia
     public void restablecerTablero() {
-        
+
+    }
+
+    public void restablecerCuadros() {
+        for (int i = 0; i < columnas; i++) {
+            for (int j = 0; j < lineas; j++) {
+                cuadros[i][j].restablecerColorFondo();
+            }
+        }
     }
 
     // Getters & Setters

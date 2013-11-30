@@ -8,11 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CuadroTablero extends JPanel {
+public abstract class CuadroTablero extends JPanel {
 
     private Posicion posicion;
-    private Color colorFondo;
+    protected Color colorFondo;
     private Ficha ficha;
+    private Tablero tablero;
+    private ArrayList<Posicion> posiblesMovs;
 
     public CuadroTablero(Color color, Posicion posicion) {
         super();
@@ -27,48 +29,77 @@ public class CuadroTablero extends JPanel {
             }
         });
     }
-    
+
+    public abstract void restablecerColorFondo();
+
     private void cuadroPresionado(java.awt.event.MouseEvent evt) {
-        System.out.println("Se presionó el cuadro en:");
+        CuadroTablero[][] cuadros = this.tablero.getCuadros();
+        // Si hay cuadros en verde de posibles movs regresar a su estado original sólo si ya tiró
+        if (!Tablero.tirando) {
+            this.tablero.restablecerCuadros();
+        }
+
+//        System.out.println("# Se presionó el cuadro en:");
         // Determinar en qué posiciones se puede mover
-        System.out.println(posicion);
-        if (this.ficha == null) {
-            System.out.println("NO HAY FICHA");
+//        System.out.println(posicion);
+        // Si no está tirando apenas va a seleccionar una ficha para moverla
+        if (!Tablero.tirando) {
+            if (this.ficha == null) {
+                System.out.println("NO HAY FICHA");
+            } else {
+                boolean puedeMover = false;
+                System.out.println("HAY FICHA EN ESTE CUADRO");
+                // Sólo puede tirar si selecciona una ficha de su propio tipo
+                if (this.ficha instanceof FichaB && Tablero.turnoJugador1) {
+                    // Puede mover esa ficha
+                    puedeMover = true;
+                } else if (this.ficha instanceof FichaA && !Tablero.turnoJugador1) {
+                    // Puede mover esta ficha
+                    puedeMover = true;
+                } else {
+                    puedeMover = false;
+                    System.out.println("NO PUEDES MOVER ESTA FICHA");
+                    JOptionPane.showMessageDialog(this, "NO PUEDES MOVER ESTA FICHA");
+                }
+
+                if (puedeMover) {
+                    ficha.determinarPosiblesMovimientos();
+                }
+                Tablero.fichaAMover = ficha;
+                Tablero.tirando = true;
+            }
         } else {
-            System.out.println("HAY FICHA EN ESTE CUADRO");
-            // Posibles movimientos por defecto (aún sin validar si hay fichas en las posiciones posibles
-            // a mover ni si puede comer o no)
-            ArrayList<Posicion> posiblesMovs = new ArrayList<Posicion>();
-            int incrementoY = 0;
-            // Si es una FichaA, entonces sólo se puede mover hacia abajo
-            if (this.ficha instanceof FichaB) {
-                incrementoY = 1;
-            } else if (this.ficha instanceof FichaA) {
-                // Si es una FichaB, entonces sólo se puede mover hacia arriba
-                incrementoY = -1;
+            // Si ya está tirando entonces seleccionó un cuadro donde quiere mover la ficha
+            System.out.println("INTENTANDO TIRAR en:");
+            System.out.println(posicion);
+            // Si la ficha que se quiere mover contiene la posición en posible mov 
+            // de este cuadro entonces se puede mover
+            boolean movValido = false;
+            for (Posicion p : Tablero.fichaAMover.getPosiblesMovs()) {
+                if (p.getX() == posicion.getX() && p.getY() == posicion.getY()) {
+                    movValido = true;
+                    break;
+                }
             }
-            // Movimientos en diagonal de sólo un brinco
-            Posicion posFicha = ficha.getPosicion();
-            int incrementoX = 0;
-            if( posFicha.getX() > 1 && posFicha.getX() < 8 ) {
-                // Se puede mover tanto en diagonal izquierda como diagonal derecha
-                incrementoX = 1;
-                posiblesMovs.add(new Posicion(ficha.getPosicion().getX() - 1, ficha.getPosicion().getY() + incrementoY));
-            } else if( posFicha.getX() == 1 ) {
-                // Sólo se puede mover en diagonal derecha
-                incrementoX = 1;
-            } else if( posFicha.getX() == 8 ) {
-                // Sólo se puede mover en diagonal izquierda
-                incrementoX = -1;
-            }
-            posiblesMovs.add(new Posicion(ficha.getPosicion().getX() + incrementoX, ficha.getPosicion().getY() + incrementoY));
-            
-            // Determinar si hay ficha dentro de los posibles movimientos
-            
-            
-            System.out.println("POSIBLES MOVS:");
-            for(Posicion p : posiblesMovs) {
-                System.out.println(p);
+            if (movValido) {
+                System.out.println("# MOVIMIENTO VÁLIDO. Tiraste en:");
+                System.out.println(posicion);
+                // Tirar: mover ficha al nuevo cuadro y remover la antigua
+                Tablero.fichaAMover.getCuadro().removeAll();
+                Tablero.fichaAMover.getCuadro().revalidate();
+                Tablero.fichaAMover.getCuadro().repaint();
+                add(Tablero.fichaAMover);
+                setFicha(Tablero.fichaAMover);
+                Tablero.fichaAMover.setCuadro(this);
+                Tablero.fichaAMover.setPosicion(posicion);
+                
+                // Ya tiró, establecer como tirando false
+                Tablero.tirando = false;
+                // Restablecer cuadros (quitar color verde)
+                this.tablero.restablecerCuadros();
+            } else {
+                System.out.println("MOVIMIENTO INVÁLIDO");
+                JOptionPane.showMessageDialog(this, "MOVIMIENTO INVÁLIDO");
             }
         }
     }
@@ -76,7 +107,16 @@ public class CuadroTablero extends JPanel {
     public void agregarFicha(Ficha ficha) {
         add(ficha);
         this.ficha = ficha;
+        this.ficha.setCuadro(this);
         ficha.setPosicion(posicion);
+    }
+
+    public boolean hayFicha() {
+        if (this.ficha == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -102,5 +142,13 @@ public class CuadroTablero extends JPanel {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
     }
 }
