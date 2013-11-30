@@ -69,6 +69,7 @@ public abstract class CuadroTablero extends JPanel {
                     if (ficha.getPosiblesMovs().size() > 0) {
                         Tablero.tirando = true;
                         Tablero.fichaAMover = ficha;
+                        Tablero.fichaAMover.getCuadro().setBackground(Color.GRAY);
                     }
                 }
             }

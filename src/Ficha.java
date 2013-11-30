@@ -17,7 +17,7 @@ public class Ficha extends JLabel {
     private ImageIcon fondoFicha;
     private Posicion posicion;
     CuadroTablero cuadro;
-    private ArrayList<Posicion> posiblesMovs;
+    protected ArrayList<Posicion> posiblesMovs;
     public final static String FICHA_A = "src/atomic/images/fichas_A.png";
     public final static String FICHA_B = "src/atomic/images/fichas_B.png";
 
@@ -84,8 +84,11 @@ public class Ficha extends JLabel {
         ArrayList<Posicion> movsAEliminar = new ArrayList<Posicion>();
 
         // Determinar si hay ficha dentro de los posibles movimientos
+        ArrayList<Posicion> movsAComer = new ArrayList<Posicion>();
         for (Posicion p : posiblesMovs) {
-            CuadroTablero cuadro = Tablero.cuadros[p.getX() - 1][p.getY() - 1];
+            int x = p.getX();
+            int y = p.getY();
+            CuadroTablero cuadro = Tablero.cuadros[x - 1][y - 1];
             // Si hay ficha entonces determinar si se puede comer o no
             if (cuadro.hayFicha()) {
                 if (cuadro.getFicha().getClass() == this.getClass()) {
@@ -93,8 +96,34 @@ public class Ficha extends JLabel {
                     movsAEliminar.add(p);
                 } else {
                     // No son del mismo tipo, tal vez puede comer
+                    // Determinar si existe un cuadro vacío en diagonal a la ficha
+                    // que tal vez que pueda comer
+                    // Determinar si es que puede comer hacia la derecha o izquierda
+                    int incrementoX2 = 0;
+                    if (x < cuadro.getFicha().getPosicion().getX()) {
+                        incrementoX2 = -1;
+                    } else {
+                        incrementoX2 = 1;
+                    }
+                    int x2 = x + incrementoX2;
+                    int y2 = y + incrementoY;
+                    // Validación para bordes
+                    if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
+                        // Puede comer
+                        System.out.println("ESTÁ VACÍA. PUEDE COMER");
+                        movsAEliminar.add(p);
+                        movsAComer.add(new Posicion(x2, y2));
+                    } else {
+                        // No puede comer, eliminar posible mov
+                        movsAEliminar.add(p);
+                    }
                 }
             }
+        }
+
+        // Añadir los movimientos posibles a comer ficha
+        for (Posicion p : movsAComer) {
+            posiblesMovs.add(p);
         }
 
         // Eliminar movimientos inválidos
