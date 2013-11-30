@@ -64,9 +64,13 @@ public abstract class CuadroTablero extends JPanel {
 
                 if (puedeMover) {
                     ficha.determinarPosiblesMovimientos();
-                    Tablero.tirando = true;
+                    // Sólo si tiene posibles movimientos puede tirar, sino necesita
+                    // seleccionar otra ficha
+                    if (ficha.getPosiblesMovs().size() > 0) {
+                        Tablero.tirando = true;
+                        Tablero.fichaAMover = ficha;
+                    }
                 }
-                Tablero.fichaAMover = ficha;
             }
         } else {
             // Si ya está tirando entonces seleccionó un cuadro donde quiere mover la ficha
@@ -88,6 +92,7 @@ public abstract class CuadroTablero extends JPanel {
                 Tablero.fichaAMover.getCuadro().removeAll();
                 Tablero.fichaAMover.getCuadro().revalidate();
                 Tablero.fichaAMover.getCuadro().repaint();
+                Tablero.fichaAMover.getCuadro().setFicha(null);
                 add(Tablero.fichaAMover);
                 setFicha(Tablero.fichaAMover);
                 Tablero.fichaAMover.setCuadro(this);
