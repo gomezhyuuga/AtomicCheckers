@@ -64,9 +64,9 @@ public abstract class CuadroTablero extends JPanel {
 
                 if (puedeMover) {
                     ficha.determinarPosiblesMovimientos();
+                    Tablero.tirando = true;
                 }
                 Tablero.fichaAMover = ficha;
-                Tablero.tirando = true;
             }
         } else {
             // Si ya está tirando entonces seleccionó un cuadro donde quiere mover la ficha
@@ -97,6 +97,14 @@ public abstract class CuadroTablero extends JPanel {
                 Tablero.tirando = false;
                 // Restablecer cuadros (quitar color verde)
                 this.tablero.restablecerCuadros();
+                // Cambiar de turno
+                if (Tablero.turnoJugador1) {
+                    Tablero.turnoJugador1 = false;
+                    this.tablero.getVentanaJuego().cambiarLblTurno("TURNO DE JUGADOR 2");
+                } else {
+                    Tablero.turnoJugador1 = true;
+                    this.tablero.getVentanaJuego().cambiarLblTurno("TURNO DE JUGADOR 1");
+                }
             } else {
                 System.out.println("MOVIMIENTO INVÁLIDO");
                 JOptionPane.showMessageDialog(this, "MOVIMIENTO INVÁLIDO");

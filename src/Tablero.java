@@ -19,6 +19,7 @@ public class Tablero {
     private String color2;
     private JFrame ventana;
     private JPanel tablero;
+    private VentanaJuego ventanaJuego;
     public static CuadroTablero[][] cuadros;
     public static Ficha fichaAMover;
 
@@ -158,4 +159,13 @@ public class Tablero {
     public void setTablero(JPanel tablero) {
         this.tablero = tablero;
     }
+
+    public VentanaJuego getVentanaJuego() {
+        return ventanaJuego;
+    }
+
+    public void setVentanaJuego(VentanaJuego ventanaJuego) {
+        this.ventanaJuego = ventanaJuego;
+    }
+
 }
