@@ -17,16 +17,15 @@ public class Tablero {
     private String color2;
     private JFrame ventana;
     private JPanel tablero;
-    private Ficha[][] fichas;
+    private CuadroTablero[][] cuadros;
 
     public Tablero(int cols, int rows) {
         this.columnas = cols;
         this.lineas = rows;
         this.color1 = "atomic/images/cuadro_blanco.png";
         this.color2 = "atomic/images/cuadro_cafe.png";
+        cuadros = new CuadroTablero[rows][cols];
     }
-    
-    
 
     public void init() {
         System.out.println("Inicializando tablero...");
@@ -63,22 +62,40 @@ public class Tablero {
                 }
                 
                 // Decidir si va una ficha en el cuadro o no
-                CuadroTablero cuadroTablero = new CuadroTablero(color);
-                if ( (i == 0 || i == 2) && (j%2) == 0 ) {
-                    cuadroTablero.agregarFicha(Ficha.FICHA_A);
-                } else if ( i== 1  && (j%2) != 0 ) {
-                    cuadroTablero.agregarFicha(Ficha.FICHA_A);
+                Posicion posicion = new Posicion(j + 1, lineas - i);
+                CuadroTablero cuadroTablero = new CuadroTablero(color, posicion);
+                if ( (i == 0 || i == 2) && (j%2) != 0 ) {
+                    cuadroTablero.agregarFicha(new FichaA(posicion));
+                } else if ( i== 1  && (j%2) == 0 ) {
+                    cuadroTablero.agregarFicha(new FichaA(posicion));
                 } else if ( (i == 5 || i == 7) && (j%2) == 0 ) {
-                    cuadroTablero.agregarFicha(Ficha.FICHA_B);
+                    cuadroTablero.agregarFicha(new FichaB(posicion));
                 } else if ( i== 6  && (j%2) != 0 ) {
-                    cuadroTablero.agregarFicha(Ficha.FICHA_B);
+                    cuadroTablero.agregarFicha(new FichaB(posicion));
                 }
-                
                 // Agregar el cuadro al panel del container
+                this.cuadros[i][j] = cuadroTablero;
                 panel.add(cuadroTablero);
             }
         }
         this.tablero = panel;
+        
+        // Imprimir el tablero en la consola
+        for (int i = 0; i < this.lineas; i++) {
+            for (int j = 0; j < this.columnas; j++) {
+                CuadroTablero cuadro = cuadros[i][j];
+                System.out.print(cuadro);
+            }
+            System.out.println("");
+        }
+    }
+
+    public CuadroTablero[][] getCuadros() {
+        return cuadros;
+    }
+
+    public void setCuadros(CuadroTablero[][] cuadros) {
+        this.cuadros = cuadros;
     }
     
 //    Métodos de instancia

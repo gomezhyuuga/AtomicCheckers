@@ -9,23 +9,18 @@ import javax.swing.JPanel;
  * Barros)
  * @version (9/13/2013)
  */
-public class Ficha extends JPanel {
+public class Ficha extends JLabel {
 
     private ImageIcon fondoFicha;
-    private int posicionX;
-    private int posicionY;
+    private Posicion posicion;
     public final static String FICHA_A = "src/atomic/images/fichas_A.png";
     public final static String FICHA_B = "src/atomic/images/fichas_B.png";
 
-    public Ficha(String imagenFicha) {
-        super();
+    public Ficha(String imagenFicha, Posicion posicion) {
+        super(new ImageIcon(imagenFicha));
+        this.posicion = posicion;
 
-        setOpaque(false);
-        setLayout(new BorderLayout(0, 0));
         this.fondoFicha = new ImageIcon(imagenFicha);
-
-        JLabel ficha = new JLabel(this.fondoFicha);
-        add(ficha);
     }
 
 //  Métodos de instancia
@@ -38,19 +33,11 @@ public class Ficha extends JPanel {
     }
 
 //  Getters & Setters
-    public int getPosicionX() {
-        return posicionX;
+    public Posicion getPosicion() {
+        return posicion;
     }
 
-    public void setPosicionX(int posicionX) {
-        this.posicionX = posicionX;
-    }
-
-    public int getPosicionY() {
-        return posicionY;
-    }
-
-    public void setPosicionY(int posicionY) {
-        this.posicionY = posicionY;
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
     }
 }
