@@ -39,6 +39,37 @@ public class CuadroTablero extends JPanel {
             // Posibles movimientos por defecto (aún sin validar si hay fichas en las posiciones posibles
             // a mover ni si puede comer o no)
             ArrayList<Posicion> posiblesMovs = new ArrayList<Posicion>();
+            int incrementoY = 0;
+            // Si es una FichaA, entonces sólo se puede mover hacia abajo
+            if (this.ficha instanceof FichaB) {
+                incrementoY = 1;
+            } else if (this.ficha instanceof FichaA) {
+                // Si es una FichaB, entonces sólo se puede mover hacia arriba
+                incrementoY = -1;
+            }
+            // Movimientos en diagonal de sólo un brinco
+            Posicion posFicha = ficha.getPosicion();
+            int incrementoX = 0;
+            if( posFicha.getX() > 1 && posFicha.getX() < 8 ) {
+                // Se puede mover tanto en diagonal izquierda como diagonal derecha
+                incrementoX = 1;
+                posiblesMovs.add(new Posicion(ficha.getPosicion().getX() - 1, ficha.getPosicion().getY() + incrementoY));
+            } else if( posFicha.getX() == 1 ) {
+                // Sólo se puede mover en diagonal derecha
+                incrementoX = 1;
+            } else if( posFicha.getX() == 8 ) {
+                // Sólo se puede mover en diagonal izquierda
+                incrementoX = -1;
+            }
+            posiblesMovs.add(new Posicion(ficha.getPosicion().getX() + incrementoX, ficha.getPosicion().getY() + incrementoY));
+            
+            // Determinar si hay ficha dentro de los posibles movimientos
+            
+            
+            System.out.println("POSIBLES MOVS:");
+            for(Posicion p : posiblesMovs) {
+                System.out.println(p);
+            }
         }
     }
 
