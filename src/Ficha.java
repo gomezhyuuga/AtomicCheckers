@@ -100,7 +100,7 @@ public class Ficha extends JLabel {
                     // que tal vez que pueda comer
                     // Determinar si es que puede comer hacia la derecha o izquierda
                     int incrementoX2 = 0;
-                    if (x < cuadro.getFicha().getPosicion().getX()) {
+                    if (x < posicion.getX()) {
                         incrementoX2 = -1;
                     } else {
                         incrementoX2 = 1;
@@ -108,15 +108,22 @@ public class Ficha extends JLabel {
                     int x2 = x + incrementoX2;
                     int y2 = y + incrementoY;
                     // Validación para bordes
-                    if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
-                        // Puede comer
-                        System.out.println("ESTÁ VACÍA. PUEDE COMER");
-                        movsAEliminar.add(p);
-                        movsAComer.add(new Posicion(x2, y2));
+                    if (x2 >= 1 && x2 <= 8) {
+                        // Puede comer hacia la izquierda
+                        if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
+                            // Puede comer
+                            System.out.println("ESTÁ VACÍA. PUEDE COMER");
+                            movsAEliminar.add(p);
+                            movsAComer.add(new Posicion(x2, y2));
+                        } else {
+                            // No puede comer, eliminar posible mov
+                            movsAEliminar.add(p);
+                        }
                     } else {
                         // No puede comer, eliminar posible mov
                         movsAEliminar.add(p);
                     }
+
                 }
             }
         }
