@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -273,10 +276,22 @@ public class VentanaJuego extends javax.swing.JFrame {
     void disminuirFichasJ1() {
         this.fichasJ1 -= 1;
         this.lblFichasJ1.setText("" + this.fichasJ1);
+        determinarGanador();
     }
     
     void disminuirFichasJ2() {
         this.fichasJ2 -= 1;
         this.lblFichasJ2.setText("" + this.fichasJ2);
+        determinarGanador();
+    }
+    
+    public void determinarGanador() {
+        if (this.fichasJ2 == 0) {
+            JOptionPane.showMessageDialog(this, "EL JUGADOR 1 HA GANADO!");
+            System.exit(0);
+        } else if (this.fichasJ1 == 0) {
+            JOptionPane.showMessageDialog(this, "EL JUGADOR 2 HA GANADO!");
+            System.exit(0);
+        }
     }
 }

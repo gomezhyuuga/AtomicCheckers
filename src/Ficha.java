@@ -61,6 +61,7 @@ public class Ficha extends JLabel {
     void determinarPosiblesMovimientos() {
         posiblesMovs = new ArrayList<Posicion>();
         movsAComer = new ArrayList<Posicion>();
+        ArrayList<Posicion> movsAEliminar = new ArrayList<Posicion>();
         if (this instanceof FichaA && !reina && this.posicion.getY() == 1) {
             // ya llegó hasta abajo, se convierte en reina
             posiblesMovs.clear();
@@ -89,8 +90,47 @@ public class Ficha extends JLabel {
             }
             // Determinar posibles movsAcomer
             for (Posicion pos : posiblesMovs) {
-                if (Tablero.cuadros[pos.getX() - 1][ pos.getY() - 1].hayFicha()) {
-                    movsAComer.add(pos);
+                CuadroTablero c = Tablero.cuadros[pos.getX() - 1][ pos.getY() - 1];
+                if (c.hayFicha()) {
+                    movsAEliminar.add(pos);
+                    // Hay ficha, tal vez pueda comer. Determinar si es de su mismo
+                    // tipo la ficha o no
+                    if (c.getFicha().getClass() != this.getClass()) {
+                        int x2 = c.getPosicion().getX();
+                        int y2 = c.getPosicion().getY();
+                        // No son del mismo tipo. Determinar si puede comer o no
+                        // Para bordes
+                        if (x2 == 8 || x2 == 1 || y2 == 1 || y2 == 8) {
+                            // No puede comer porque ya está en el borde y no hay dónde saltar
+                            movsAEliminar.add(pos);
+                        } else {
+                            // PUede comer
+                            // Comiendo hacia la derecha. El incremento es +1
+                            int incrY = 0;
+                            int incrX = 0;
+                            if (x2 > this.getPosicion().getX()) {
+                                incrX = 1;
+                            } else {
+                                // Comiendo hacia la izquierda
+                                incrX = -1;
+                            }
+                            if (y2 > this.getPosicion().getY()) {
+                                // Come hacia arriba a la derecha
+                                incrY = 1;
+                            } else {
+                                incrY = -1;
+                            }
+                            // Si está vació el cuadro puede mover y comer
+                            Posicion posComer = new Posicion(x2 + incrX, y2 + incrY);
+                            if (!Tablero.cuadros[posComer.getX() - 1][posComer.getY() - 1].hayFicha()) {
+                                c.setBackground(Color.blue);
+                                movsAComer.add(posComer);
+                            }
+                        }
+                    } else {
+                        // Son del mismo tipo, se elimina el posible mov
+                        movsAEliminar.add(pos);
+                    }
                 }
             }
         } else {
@@ -118,7 +158,6 @@ public class Ficha extends JLabel {
                 incrementoX = -1;
             }
             posiblesMovs.add(new Posicion(posicion.getX() + incrementoX, posicion.getY() + incrementoY));
-            ArrayList<Posicion> movsAEliminar = new ArrayList<Posicion>();
 
             // Determinar si hay ficha dentro de los posibles movimientos
             for (Posicion p : posiblesMovs) {
@@ -131,7 +170,6 @@ public class Ficha extends JLabel {
                         // Son del mismo tipo, no se puede comer. Se eliminan los posibles movs
                         movsAEliminar.add(p);
                     } else {
-                        cuadro.setBackground(Color.blue);
                         // No son del mismo tipo, tal vez puede comer
                         // Determinar si existe un cuadro vacío en diagonal a la ficha
                         // que tal vez que pueda comer
@@ -148,8 +186,9 @@ public class Ficha extends JLabel {
                         if (x2 >= 1 && x2 <= 8 && y2 >= 1 && y2 <= 8) {
                             // Puede comer hacia la izquierda
                             if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
-                                // Puede comer, poner de color rojo el fondo de la ficha
+                                // Puede comer, poner de color azul el fondo de la ficha
                                 System.out.println("ESTÁ VACÍA. PUEDE COMER");
+                                cuadro.setBackground(Color.blue);
                                 movsAEliminar.add(p);
                                 movsAComer.add(new Posicion(x2, y2));
                             } else {
@@ -164,16 +203,15 @@ public class Ficha extends JLabel {
                     }
                 }
             }
+        }
+        // Añadir los movimientos posibles a comer ficha
+        for (Posicion p : movsAComer) {
+            posiblesMovs.add(p);
+        }
 
-            // Añadir los movimientos posibles a comer ficha
-            for (Posicion p : movsAComer) {
-                posiblesMovs.add(p);
-            }
-
-            // Eliminar movimientos inválidos
-            for (Posicion p : movsAEliminar) {
-                posiblesMovs.remove(p);
-            }
+        // Eliminar movimientos inválidos
+        for (Posicion p : movsAEliminar) {
+            posiblesMovs.remove(p);
         }
 
         // Resaltar cuadros a los que puede mover

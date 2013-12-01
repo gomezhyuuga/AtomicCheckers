@@ -155,7 +155,6 @@ public abstract class CuadroTablero extends JPanel {
                         c.repaint();
                         c.setFicha(null);
                     }
-
                 }
 
                 // Ya tiró, establecer como tirando false
