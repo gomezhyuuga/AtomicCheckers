@@ -101,7 +101,26 @@ public abstract class CuadroTablero extends JPanel {
                 setFicha(Tablero.fichaAMover);
                 Tablero.fichaAMover.setCuadro(this);
                 Tablero.fichaAMover.setPosicion(posicion);
-
+                
+                // Determinar si se convirtió en reina
+                if ( Tablero.fichaAMover instanceof FichaA && Tablero.fichaAMover.getPosicion().getY() == 1 ) {
+                    System.out.println("SE CONVIERTE EN REINA A");
+                    JOptionPane.showMessageDialog(this, "LA FICHA SE HA CONVERTIDO EN REINA");
+                    FichaA reina = new FichaA(posicion, true);
+                    this.removeAll();
+                    this.revalidate();
+                    this.repaint();
+                    agregarFicha(reina);
+                } else if ( Tablero.fichaAMover instanceof FichaB && Tablero.fichaAMover.getPosicion().getY() == 8 ) {
+                    System.out.println("SE CONVIERTE EN REINA B");
+                    JOptionPane.showMessageDialog(this, "LA FICHA SE HA CONVERTIDO EN REINA");
+                    FichaB reina = new FichaB(posicion, true);
+                    this.removeAll();
+                    this.revalidate();
+                    this.repaint();
+                    agregarFicha(reina);
+                }
+                
                 // Determinar si comió una ficha
                 ArrayList<Posicion> movsAComer = Tablero.fichaAMover.getMovsAComer();
                 for (Posicion p : movsAComer) {

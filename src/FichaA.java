@@ -13,4 +13,11 @@ public class FichaA extends Ficha {
     public FichaA(Posicion posicion) {
         super(Ficha.FICHA_A, posicion);
     }
+
+    public FichaA(Posicion posicion, boolean reina) {
+        super(Ficha.FICHA_A_REINA, posicion);
+        setReina(true);
+    }
+    
+    
 }

@@ -9,7 +9,13 @@
  * @author gomezhyuuga
  */
 public class FichaB extends Ficha {
+
     public FichaB(Posicion posicion) {
         super(Ficha.FICHA_B, posicion);
+    }
+
+    public FichaB(Posicion posicion, boolean reina) {
+        super(Ficha.FICHA_B_REINA, posicion);
+        setReina(true);
     }
 }

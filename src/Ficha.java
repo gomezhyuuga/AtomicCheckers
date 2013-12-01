@@ -17,10 +17,13 @@ public class Ficha extends JLabel {
     private ImageIcon fondoFicha;
     private Posicion posicion;
     private ArrayList<Posicion> movsAComer;
+    private boolean reina;
     CuadroTablero cuadro;
     protected ArrayList<Posicion> posiblesMovs;
     public final static String FICHA_A = "src/atomic/images/fichas_A.png";
     public final static String FICHA_B = "src/atomic/images/fichas_B.png";
+    public final static String FICHA_A_REINA = "src/atomic/images/fichas_A_Reina.png";
+    public final static String FICHA_B_REINA = "src/atomic/images/fichas_B_Reina.png";
 
     public Ficha(String imagenFicha, Posicion posicion) {
         super(new ImageIcon(imagenFicha));
@@ -57,12 +60,39 @@ public class Ficha extends JLabel {
 
     void determinarPosiblesMovimientos() {
         posiblesMovs = new ArrayList<Posicion>();
-        if (this instanceof FichaA && this.posicion.getY() == 1) {
+        movsAComer = new ArrayList<Posicion>();
+        if (this instanceof FichaA && !reina && this.posicion.getY() == 1) {
             // ya llegó hasta abajo, se convierte en reina
             posiblesMovs.clear();
-        } else if (this instanceof FichaB && this.posicion.getY() == 8) {
+        } else if (this instanceof FichaB && !reina && this.posicion.getY() == 8) {
             // ya llegó hasta arriba, se convierte en reina
             posiblesMovs.clear();
+        } else if (this.reina) {
+            System.out.println("SE PUEDE MOVER COMO REINA");
+            int x = posicion.getX();
+            int y = posicion.getY();
+            // Movimiento en las cuatro diagonales
+            Posicion pos1 = new Posicion(x + 1, y + 1);
+            Posicion pos2 = new Posicion(x + 1, y - 1);
+            Posicion pos3 = new Posicion(x - 1, y + 1);
+            Posicion pos4 = new Posicion(x - 1, y - 1);
+            ArrayList<Posicion> movs = new ArrayList<Posicion>();
+            movs.add(pos1);
+            movs.add(pos2);
+            movs.add(pos3);
+            movs.add(pos4);
+            for (Posicion pos : movs) {
+                // Posición válida no se sale del tablero
+                if (pos.getX() != 0 && pos.getY() != 9) {
+                    posiblesMovs.add(pos);
+                }
+            }
+            // Determinar posibles movsAcomer
+            for (Posicion pos : posiblesMovs) {
+                if (Tablero.cuadros[pos.getX() - 1][ pos.getY() - 1].hayFicha()) {
+                    movsAComer.add(pos);
+                }
+            }
         } else {
             // Posibles movimientos por defecto (aún sin validar si hay fichas en las posiciones posibles
             // a mover ni si puede comer o no)
@@ -91,7 +121,6 @@ public class Ficha extends JLabel {
             ArrayList<Posicion> movsAEliminar = new ArrayList<Posicion>();
 
             // Determinar si hay ficha dentro de los posibles movimientos
-            movsAComer = new ArrayList<Posicion>();
             for (Posicion p : posiblesMovs) {
                 int x = p.getX();
                 int y = p.getY();
@@ -102,6 +131,7 @@ public class Ficha extends JLabel {
                         // Son del mismo tipo, no se puede comer. Se eliminan los posibles movs
                         movsAEliminar.add(p);
                     } else {
+                        cuadro.setBackground(Color.blue);
                         // No son del mismo tipo, tal vez puede comer
                         // Determinar si existe un cuadro vacío en diagonal a la ficha
                         // que tal vez que pueda comer
@@ -118,7 +148,7 @@ public class Ficha extends JLabel {
                         if (x2 >= 1 && x2 <= 8 && y2 >= 1 && y2 <= 8) {
                             // Puede comer hacia la izquierda
                             if (!Tablero.cuadros[x2 - 1][y2 - 1].hayFicha()) {
-                                // Puede comer
+                                // Puede comer, poner de color rojo el fondo de la ficha
                                 System.out.println("ESTÁ VACÍA. PUEDE COMER");
                                 movsAEliminar.add(p);
                                 movsAComer.add(new Posicion(x2, y2));
@@ -147,6 +177,10 @@ public class Ficha extends JLabel {
         }
 
         // Resaltar cuadros a los que puede mover
+        resaltarPosiblesMovimientos();
+    }
+
+    public void resaltarPosiblesMovimientos() {
         if (posiblesMovs.size() > 0) {
             System.out.println("POSIBLES MOVS:");
             for (Posicion p : posiblesMovs) {
@@ -174,6 +208,14 @@ public class Ficha extends JLabel {
 
     public void setMovsAComer(ArrayList<Posicion> movsAComer) {
         this.movsAComer = movsAComer;
+    }
+
+    public boolean isReina() {
+        return reina;
+    }
+
+    public void setReina(boolean reina) {
+        this.reina = reina;
     }
 
 }
