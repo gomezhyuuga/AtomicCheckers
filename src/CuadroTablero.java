@@ -103,7 +103,7 @@ public abstract class CuadroTablero extends JPanel {
                 Tablero.fichaAMover.setPosicion(posicion);
                 
                 // Determinar si se convirtió en reina
-                if ( Tablero.fichaAMover instanceof FichaA && Tablero.fichaAMover.getPosicion().getY() == 1 ) {
+                if ( Tablero.fichaAMover instanceof FichaA && !Tablero.fichaAMover.isReina() && Tablero.fichaAMover.getPosicion().getY() == 1 ) {
                     System.out.println("SE CONVIERTE EN REINA A");
                     JOptionPane.showMessageDialog(this, "LA FICHA SE HA CONVERTIDO EN REINA");
                     FichaA reina = new FichaA(posicion, true);
@@ -111,7 +111,7 @@ public abstract class CuadroTablero extends JPanel {
                     this.revalidate();
                     this.repaint();
                     agregarFicha(reina);
-                } else if ( Tablero.fichaAMover instanceof FichaB && Tablero.fichaAMover.getPosicion().getY() == 8 ) {
+                } else if ( Tablero.fichaAMover instanceof FichaB && !Tablero.fichaAMover.isReina() && Tablero.fichaAMover.getPosicion().getY() == 8 ) {
                     System.out.println("SE CONVIERTE EN REINA B");
                     JOptionPane.showMessageDialog(this, "LA FICHA SE HA CONVERTIDO EN REINA");
                     FichaB reina = new FichaB(posicion, true);

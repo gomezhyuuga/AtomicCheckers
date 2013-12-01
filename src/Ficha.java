@@ -83,7 +83,7 @@ public class Ficha extends JLabel {
             movs.add(pos4);
             for (Posicion pos : movs) {
                 // Posición válida no se sale del tablero
-                if (pos.getX() != 0 && pos.getY() != 9) {
+                if (pos.getX() != 0 && pos.getX() != 9 && pos.getY() != 9 && pos.getY() != 0) {
                     posiblesMovs.add(pos);
                 }
             }
