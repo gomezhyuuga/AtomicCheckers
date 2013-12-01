@@ -19,7 +19,7 @@ public class Ficha extends JLabel {
     private ArrayList<Posicion> movsAComer;
     private boolean reina;
     CuadroTablero cuadro;
-    protected ArrayList<Posicion> posiblesMovs;
+    private ArrayList<Posicion> posiblesMovs;
     public final static String FICHA_A = "src/atomic/images/fichas_A.png";
     public final static String FICHA_B = "src/atomic/images/fichas_B.png";
     public final static String FICHA_A_REINA = "src/atomic/images/fichas_A_Reina.png";
@@ -30,15 +30,6 @@ public class Ficha extends JLabel {
         this.posicion = posicion;
 
         this.fondoFicha = new ImageIcon(imagenFicha);
-    }
-
-//  Métodos de instancia
-    public void mover(int posicionX, int posicionY) {
-
-    }
-
-    public void comerFicha(int posicionX, int posicionY) {
-
     }
 
 //  Getters & Setters

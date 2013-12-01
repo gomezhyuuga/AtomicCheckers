@@ -107,10 +107,6 @@ public class Tablero {
     }
 
 //    Métodos de instancia
-    public void restablecerTablero() {
-
-    }
-
     public void restablecerCuadros() {
         for (int i = 0; i < columnas; i++) {
             for (int j = 0; j < lineas; j++) {

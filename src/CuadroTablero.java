@@ -14,7 +14,6 @@ public abstract class CuadroTablero extends JPanel {
     protected Color colorFondo;
     private Ficha ficha;
     private Tablero tablero;
-    private ArrayList<Posicion> posiblesMovs;
 
     public CuadroTablero(Color color, Posicion posicion) {
         super();
