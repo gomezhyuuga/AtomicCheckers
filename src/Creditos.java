@@ -31,7 +31,7 @@ public class Creditos extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Juego elaborado por  Atomic Industries:\n\n- Fernando Gómez Herrera\n- Luis Eduardo Ballinas Aguilar\n- Francisco Manuel Barros Vargas\n- Gabriel Olvera Ramos\n\nDurante la materia de Programación Orientada a Objetos para poner en práctica los conocimientos adquiridos.");
+        jTextArea1.setText("Juego elaborado por el equipo Atomic Industries\npara la materia de Programación Orientada a Objetos:\n\n- Fernando Gómez Herrera  ISC  A01020319\n- Luis Eduardo Ballinas Aguilar  ISC  A01371743\n- Gabriel Olvera Ramos  ISC  A01168965\n- Francisco Manuel Barros Vargas  ISC  A01371000");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setMargin(new java.awt.Insets(20, 20, 20, 20));
         jScrollPane1.setViewportView(jTextArea1);

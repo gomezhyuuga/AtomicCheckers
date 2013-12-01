@@ -36,7 +36,7 @@ public class AcercaDe extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Version 1.6 \nCopyright ©2013. Atomic Industries. Reservados todos los\nderechos.\nEl software Atomic Checkers y la interfaz de usuario\nestán protegidos por las leyes de marca comercial y \notros derechos de propiedad intelectual actuales.\n\nAtomic Checkers, desarrollado para Programación \nOrientada a Objetos por Atomic Industries.\n \n\n");
+        jTextArea1.setText("Version 1.6 \nCopyright ©2013. Atomic Industries. Reservados todos los\nderechos.\nEl software Atomic Checkers y la interfaz de usuario\nestán protegidos por las leyes de marca comercial y \notros derechos de propiedad intelectual actuales.\n\nInstituto Tecnologico de Monterrey Campus Estado de México.\nProgramación Orientada a Objetos\n \n\n");
         jTextArea1.setSelectedTextColor(new java.awt.Color(102, 0, 51));
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -48,10 +48,12 @@ public class AcercaDe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

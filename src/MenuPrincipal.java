@@ -156,7 +156,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void play_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_btnActionPerformed
-        ventanaJuego = null;
+        if (ventanaJuego != null) {
+            ventanaJuego.dispose();
+        }
         ventanaJuego = new VentanaJuego();
         ventanaJuego.setJugador1(txtJugador1.getText());
         ventanaJuego.setJugador2(txtJugador2.getText());

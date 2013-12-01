@@ -64,7 +64,7 @@
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Juego elaborado por  Atomic Industries:&#xa;&#xa;- Fernando G&#xf3;mez Herrera&#xa;- Luis Eduardo Ballinas Aguilar&#xa;- Francisco Manuel Barros Vargas&#xa;- Gabriel Olvera Ramos&#xa;&#xa;Durante la materia de Programaci&#xf3;n Orientada a Objetos para poner en pr&#xe1;ctica los conocimientos adquiridos."/>
+            <Property name="text" type="java.lang.String" value="Juego elaborado por el equipo Atomic Industries&#xa;para la materia de Programaci&#xf3;n Orientada a Objetos:&#xa;&#xa;- Fernando G&#xf3;mez Herrera  ISC  A01020319&#xa;- Luis Eduardo Ballinas Aguilar  ISC  A01371743&#xa;- Gabriel Olvera Ramos  ISC  A01168965&#xa;- Francisco Manuel Barros Vargas  ISC  A01371000"/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[20, 20, 20, 20]"/>
