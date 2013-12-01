@@ -1,11 +1,11 @@
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author A01020319
@@ -14,13 +14,15 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     private String jugador1;
     private String jugador2;
+    private Creditos ventanaCreditos;
+    private AcercaDe ventanaAcercaDe;
+    private Ayuda ventanaAyuda;
     private int fichasJ1 = 12;
     private int fichasJ2 = 12;
 
     /**
      * Creates new form Interface
      */
-    
     public VentanaJuego() {
         initComponents();
         // Crear tablero
@@ -28,6 +30,9 @@ public class VentanaJuego extends javax.swing.JFrame {
         tablero.setVentanaJuego(this);
         tablero.init();
         panelTablero.add(tablero.getTablero());
+        ventanaCreditos = MenuPrincipal.ventanaCreditos;
+        ventanaAyuda = MenuPrincipal.ventanaAyuda;
+        ventanaAcercaDe = MenuPrincipal.ventanaAcercaDe;
     }
 
     public void cambiarLblTurno(String turno) {
@@ -194,19 +199,25 @@ public class VentanaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Ayuda ayuda = new Ayuda();
-        ayuda.setVisible(true);
+        if (ventanaAyuda == null) {
+            ventanaAyuda = new Ayuda();
+        }
+        ventanaAyuda.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        AcercaDe acerca = new AcercaDe();
-        acerca.setVisible(true);
+        if (ventanaAcercaDe == null) {
+            ventanaAcercaDe = new AcercaDe();
+        }
+        ventanaAcercaDe.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Creditos creditos = new Creditos();
-        creditos.setVisible(true);
+        if (ventanaCreditos == null) {
+            ventanaCreditos = new Creditos();
+        }
+        ventanaCreditos.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public void setJugador1(String jugador1) {
@@ -278,13 +289,13 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.lblFichasJ1.setText("" + this.fichasJ1);
         determinarGanador();
     }
-    
+
     void disminuirFichasJ2() {
         this.fichasJ2 -= 1;
         this.lblFichasJ2.setText("" + this.fichasJ2);
         determinarGanador();
     }
-    
+
     public void determinarGanador() {
         if (this.fichasJ2 == 0) {
             JOptionPane.showMessageDialog(this, "EL JUGADOR 1 HA GANADO!");

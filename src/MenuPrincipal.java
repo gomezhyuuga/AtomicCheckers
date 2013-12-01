@@ -8,8 +8,12 @@
  * @author A01020319
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-    private Creditos ventanaCreditos;
-    
+
+    public static Creditos ventanaCreditos;
+    public static AcercaDe ventanaAcercaDe;
+    public static Ayuda ventanaAyuda;
+    public static VentanaJuego ventanaJuego;
+
     /**
      * Creates new form MenuPrincipal
      */
@@ -152,16 +156,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void play_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_btnActionPerformed
-        String[] args = {};
-        VentanaJuego juego = new VentanaJuego();
-        juego.setJugador1(txtJugador1.getText());
-        juego.setJugador2(txtJugador2.getText());
-        juego.setVisible(true);
+        ventanaJuego = null;
+        ventanaJuego = new VentanaJuego();
+        ventanaJuego.setJugador1(txtJugador1.getText());
+        ventanaJuego.setJugador2(txtJugador2.getText());
+        ventanaJuego.setVisible(true);
     }//GEN-LAST:event_play_btnActionPerformed
 
     private void menuItem_creditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_creditosActionPerformed
-        Creditos creditos = new Creditos();
-        creditos.setVisible(true);
+        if (ventanaCreditos == null) {
+            ventanaCreditos = new Creditos();
+        }
+        ventanaCreditos.setVisible(true);
     }//GEN-LAST:event_menuItem_creditosActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -173,8 +179,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItem_salirActionPerformed
 
     private void menuItem_acercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_acercaDeActionPerformed
-        AcercaDe acerca = new AcercaDe();
-        acerca.setVisible(true);
+        if (ventanaAcercaDe == null) {
+            ventanaAcercaDe = new AcercaDe();
+        }
+        ventanaAcercaDe.setVisible(true);
     }//GEN-LAST:event_menuItem_acercaDeActionPerformed
 
     private void txtJugador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJugador2ActionPerformed
@@ -190,8 +198,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJugador1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-             Ayuda ayuda = new Ayuda();
-             ayuda.setVisible(true);
+        if (ventanaAyuda == null) {
+            ventanaAyuda = new Ayuda();
+        }
+        ventanaAyuda.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
